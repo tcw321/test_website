@@ -1,9 +1,56 @@
 <!DOCTYPE html>
-<html lang="">
+<html lang="en">
 <head>
-    <title>Simple Static Website</title>
+    <meta charset="UTF-8">
+    <title>Simple Name List Application</title>
+    <style>
+        #nameList {
+            margin-top: 20px;
+        }
+    </style>
 </head>
 <body>
-<h1>Hello!</h1>
+
+<div>
+    <label for="nameInput"></label><input type="text" id="nameInput" placeholder="Enter name" />
+    <button onclick="addName()">Add Name</button>
+</div>
+
+<div id="nameList">
+    <h3>Names:</h3>
+    <ul id="list">
+        <!-- Names will be added here -->
+    </ul>
+</div>
+
+<script>
+    let names = []; // Array to hold the names
+
+    function addName() {
+        const input = document.getElementById('nameInput'); // Get the input element
+        const name = input.value.trim(); // Get the name, trimming any whitespace
+
+        if (name) { // Check if the name is not empty
+            names.push(name); // Add the name to the array
+            displayNames(); // Update the display
+            input.value = ''; // Clear the input field
+        } else {
+            alert('Please enter a name.'); // Alert if the input is empty
+        }
+    }
+
+    function displayNames() {
+        const list = document.getElementById('list'); // Get the list element
+        list.innerHTML = ''; // Clear the list
+
+        names.forEach(name => { // For each name in the array
+            const item = document.createElement('li'); // Create a list item
+            item.textContent = name; // Set its text to the name
+            list.appendChild(item); // Add it to the list
+        });
+    }
+
+</script>
+
 </body>
 </html>
